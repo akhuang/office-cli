@@ -13,6 +13,16 @@ import {
   EmbedContentParameters,
   GoogleGenAI,
 } from '@google/genai';
+
+// Re-export types for use by other modules
+export type {
+  CountTokensResponse,
+  GenerateContentResponse,  
+  GenerateContentParameters,
+  CountTokensParameters,
+  EmbedContentResponse,
+  EmbedContentParameters,
+};
 import { createCodeAssistContentGenerator } from '../code_assist/codeAssist.js';
 import { DEFAULT_GEMINI_MODEL } from '../config/models.js';
 import { Config } from '../config/config.js';

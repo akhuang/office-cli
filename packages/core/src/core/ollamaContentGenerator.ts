@@ -7,8 +7,6 @@ import {
   ContentGenerator,
   GenerateContentParameters,
   GenerateContentResponse,
-  GenerateContentStreamParameters,
-  GenerateContentStreamResponse,
   EmbedContentParameters,
   EmbedContentResponse,
   CountTokensParameters,
@@ -56,8 +54,8 @@ export class OllamaContentGenerator implements ContentGenerator {
   }
 
   async *generateContentStream(
-    request: GenerateContentStreamParameters,
-  ): AsyncIterable<GenerateContentStreamResponse> {
+    request: GenerateContentParameters,
+  ): AsyncGenerator<GenerateContentResponse> {
     const response = await fetch(`${this.config.baseUrl}/api/generate`, {
       method: 'POST',
       headers: {
@@ -100,7 +98,7 @@ export class OllamaContentGenerator implements ContentGenerator {
                   response: {
                     text: () => data.response,
                   },
-                } as GenerateContentStreamResponse;
+                } as GenerateContentResponse;
               }
             } catch (e) {
               // Skip invalid JSON lines
@@ -156,9 +154,9 @@ export class OllamaContentGenerator implements ContentGenerator {
   private extractPrompt(request: GenerateContentParameters | CountTokensParameters): string {
     if ('contents' in request && request.contents) {
       return request.contents
-        .map(content => 
+        .map((content: any) => 
           content.parts
-            .map(part => part.text || '')
+            .map((part: any) => part.text || '')
             .join('')
         )
         .join('\n');
@@ -166,7 +164,7 @@ export class OllamaContentGenerator implements ContentGenerator {
     
     if ('content' in request && request.content) {
       return request.content.parts
-        .map(part => part.text || '')
+        .map((part: any) => part.text || '')
         .join('');
     }
     

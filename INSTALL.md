@@ -1,13 +1,26 @@
 # Gemini-Dev CLI - Installation Guide
 
-## 🚀 One-Line Install (推荐)
+## 🚀 快速安装 (推荐)
 
+### 预构建版本 (无需构建)
+```bash
+curl -fsSL https://raw.githubusercontent.com/akhuang/office-cli/dev/install-prebuilt.sh | bash
+```
+
+这个命令会：
+- ✅ 检查 Node.js (如果没有会提示安装) 
+- ✅ 直接下载预构建的 `gemini.js`
+- ✅ 安装到 `~/.local/bin/gemini-dev`
+- ✅ 自动配置 PATH
+- ✅ 创建默认配置
+
+### 从源码构建
 ```bash
 curl -fsSL https://raw.githubusercontent.com/akhuang/office-cli/dev/install-from-github.sh | bash
 ```
 
 这个命令会：
-- ✅ 检查 Node.js (如果没有会提示安装)
+- ✅ 检查 Node.js 和 Git
 - ✅ 克隆仓库到临时目录
 - ✅ 构建项目
 - ✅ 全局安装 `gemini-dev` 命令
