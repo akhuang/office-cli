@@ -61,6 +61,14 @@ export function AuthDialog({
   });
   const items = [
     {
+      label: 'Ollama (Local)',
+      value: AuthType.USE_OLLAMA,
+    },
+    {
+      label: 'OpenAI Compatible API',
+      value: AuthType.USE_OPENAI_COMPATIBLE,
+    },
+    {
       label: 'Login with Google',
       value: AuthType.LOGIN_WITH_GOOGLE,
     },
@@ -95,7 +103,8 @@ export function AuthDialog({
       return item.value === AuthType.USE_GEMINI;
     }
 
-    return item.value === AuthType.LOGIN_WITH_GOOGLE;
+    // Default to Ollama for local development
+    return item.value === AuthType.USE_OLLAMA;
   });
 
   const handleAuthSelect = (authMethod: AuthType) => {

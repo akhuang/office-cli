@@ -38,5 +38,16 @@ export const validateAuthMethod = (authMethod: string): string | null => {
     return null;
   }
 
+  if (authMethod === AuthType.USE_OLLAMA) {
+    // Ollama typically runs locally, no special validation needed
+    return null;
+  }
+
+  if (authMethod === AuthType.USE_OPENAI_COMPATIBLE) {
+    // OpenAI compatible APIs are flexible, minimal validation
+    // Base URL and API key will be validated at runtime
+    return null;
+  }
+
   return 'Invalid auth method selected.';
 };
